@@ -4,7 +4,7 @@ import { mergeSort } from "./merge.js";
 import { selectionSort } from "./selection.js";
 import { insertionSort } from "./insertion.js";
 
-let sortChoice = 5;
+let sortChoice = 3;
 
 // BUBBLE SORT BUTTON
 const bubbleSortBtn = document.querySelector(".algorithms__bubble");
