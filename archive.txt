@@ -1,0 +1,90 @@
+// CONDITION
+function chechCondition(l, r) {
+  if (l < r) {
+    return new Promise((resolve, reject) => {
+      resolve(true);
+    });
+  } else {
+    return new Promise((resolve, reject) => {
+      resolve(false);
+    });
+  }
+}
+
+async function merge(leftArray, rightArray, array) {
+  let leftSize = Math.floor(array.length / 2);
+  let rightSize = array.length - leftSize;
+  let i = 0;
+  let l = 0;
+  let r = 0;
+
+  //check the conditions for merging
+  while (l < leftSize && r < rightSize) {
+    const condition = await chechCondition(leftArray[l], rightArray[r]);
+    if (leftArray[l] < rightArray[r]) {
+      array[i] = leftArray[l];
+      i++;
+      l++;
+    } else {
+      array[i] = rightArray[r];
+      i++;
+      r++;
+    }
+  }
+  while (l < leftSize) {
+    array[i] = leftArray[l];
+    i++;
+    l++;
+  }
+  while (r < rightSize) {
+    array[i] = rightArray[r];
+    i++;
+    r++;
+  }
+}
+
+async function mergeSortMain(array) {
+  let length = array.length;
+  if (length <= 1) return; //base case
+
+  let middle = Math.floor(length / 2);
+  let leftArray = new Array(middle);
+  let rightArray = new Array(length - middle);
+
+  let i = 0; //left array
+  let j = 0; //right array
+
+  for (i; i < length; i++) {
+    if (i < middle) {
+      leftArray[i] = array[i];
+    } else {
+      rightArray[j] = array[i];
+      j++;
+    }
+  }
+  mergeSortMain(leftArray);
+  mergeSortMain(rightArray);
+  merge(leftArray, rightArray, array);
+}
+
+export async function mergeSort() {
+  console.log("Merge Sort Function");
+
+  const divEl = document.querySelectorAll(".visualizer__contianer__element");
+  const divHeight = [];
+
+  // STORE HEIGHT
+  for (let i = 0; i < divEl.length; i++) {
+    divHeight[i] = divEl[i].offsetHeight;
+  }
+
+  console.log(divHeight);
+  mergeSortMain(divHeight);
+  console.log(divHeight);
+
+  setTimeout(() => {
+    console.log(divHeight);
+    console.log("asycn end");
+  }, 2000);
+  console.log("sync end");
+}
