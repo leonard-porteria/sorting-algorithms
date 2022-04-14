@@ -27,7 +27,6 @@ function findIndex(array) {
       return i;
     }
   }
-  // console.log("no start index", array.length);
   return 0;
 }
 
@@ -41,15 +40,6 @@ async function merge(leftArray, rightArray, array) {
   let l = 0;
   let r = 0;
   let a = startIndex;
-
-  // console.log("start index", a);
-  // console.log("left array:", leftArray);
-  // console.log("right array:", rightArray);
-  // console.log("array:", array.length, array);
-  // console.log("");
-
-  // TODO: create new function that loops through array and returns the index
-  // the returned index will be incremented to followe the merge sort location
 
   //check the conditions for merging
   while (l < leftSize && r < rightSize) {
