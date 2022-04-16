@@ -43,7 +43,7 @@ function wait() {
   });
 }
 
-async function mergeSortMain(array, prevArray, addIndex) {
+async function mergeSortMain(array, prevArray) {
   let length = array.length;
   // BASE CASE
   const base = await baseCondition(length);
@@ -65,24 +65,11 @@ async function mergeSortMain(array, prevArray, addIndex) {
     }
   }
 
-  const leftSort = await mergeSortMain(leftArray, leftArray.length, addIndex);
+  let addIndex = prevArray;
 
-  const rightSort = await mergeSortMain(
-    rightArray,
-    rightArray.length,
-    leftSort
-  );
-
-  //  console.log("add Index", addIndex);
-
-  if (addIndex === undefined) {
-    addIndex = 0;
-    console.log("undefined", addIndex);
-  } else {
-    console.log("defined", addIndex);
-  }
-
-  merge(leftArray, rightArray, array, addIndex);
+  const leftSort = await mergeSortMain(leftArray, 0);
+  const rightSort = await mergeSortMain(rightArray, leftArray.length - 1);
+  const merged = await merge(leftArray, rightArray, array, addIndex);
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -103,6 +90,7 @@ async function merge(leftArray, rightArray, array, addIndex) {
   let r = 0;
 
   let a = addIndex + i;
+  console.log(a);
 
   // SORT LEFT AND RIGHT ARRAYS INDIVIDUALLY
   while (l < leftSize && r < rightSize) {
@@ -143,6 +131,8 @@ async function merge(leftArray, rightArray, array, addIndex) {
       a++;
     }
   }
+
+  return true;
 }
 
 export async function mergeSort() {
