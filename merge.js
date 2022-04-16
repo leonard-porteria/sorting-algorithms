@@ -17,6 +17,23 @@ function checkCondition(j, i) {
   }
 }
 
+// CHECK BASE CASE CONDITION
+function baseCondition(i) {
+  if (i <= 1) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true);
+      }, speed);
+    });
+  } else {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(false);
+      }, speed);
+    });
+  }
+}
+
 // WAIT
 function wait() {
   return new Promise((resolve, reject) => {
@@ -29,12 +46,8 @@ function wait() {
 async function mergeSortMain(array, prevArray, addIndex) {
   let length = array.length;
   // BASE CASE
-  if (length <= 1)
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(true);
-      }, speed);
-    });
+  const base = await baseCondition(length);
+  if (await base) return 0;
 
   let middle = Math.ceil(length / 2);
   let leftArray = new Array(middle);
@@ -52,7 +65,7 @@ async function mergeSortMain(array, prevArray, addIndex) {
     }
   }
 
-  const leftSort = await mergeSortMain(leftArray, leftArray.length, prevArray);
+  const leftSort = await mergeSortMain(leftArray, leftArray.length, addIndex);
 
   const rightSort = await mergeSortMain(
     rightArray,
@@ -71,7 +84,11 @@ async function mergeSortMain(array, prevArray, addIndex) {
 
   merge(leftArray, rightArray, array, addIndex);
 
-  return prevArray;
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(prevArray);
+    }, speed);
+  });
 }
 
 async function merge(leftArray, rightArray, array, addIndex) {
