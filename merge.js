@@ -26,7 +26,7 @@ function wait() {
   });
 }
 
-async function mergeSortMain(array) {
+async function mergeSortMain(array, prevArray, addIndex) {
   let length = array.length;
   // BASE CASE
   if (length <= 1)
@@ -52,12 +52,29 @@ async function mergeSortMain(array) {
     }
   }
 
-  const leftSort = await mergeSortMain(leftArray);
-  const rightSort = await mergeSortMain(rightArray);
-  merge(leftArray, rightArray, array);
+  const leftSort = await mergeSortMain(leftArray, leftArray.length, prevArray);
+
+  const rightSort = await mergeSortMain(
+    rightArray,
+    rightArray.length,
+    leftSort
+  );
+
+  //  console.log("add Index", addIndex);
+
+  if (addIndex === undefined) {
+    addIndex = 0;
+    console.log("undefined", addIndex);
+  } else {
+    console.log("defined", addIndex);
+  }
+
+  merge(leftArray, rightArray, array, addIndex);
+
+  return prevArray;
 }
 
-async function merge(leftArray, rightArray, array, startIndex) {
+async function merge(leftArray, rightArray, array, addIndex) {
   // DIV VARIABLE
   const divEl = document.querySelectorAll(".visualizer__contianer__element");
   // VARIABLES
@@ -68,19 +85,23 @@ async function merge(leftArray, rightArray, array, startIndex) {
   let l = 0;
   let r = 0;
 
+  let a = addIndex + i;
+
   // SORT LEFT AND RIGHT ARRAYS INDIVIDUALLY
   while (l < leftSize && r < rightSize) {
     const mainCondition = await checkCondition(leftArray[l], rightArray[r]);
     if (await mainCondition) {
       array[i] = leftArray[l];
-      divEl[i].style.height = `${array[i]}px`;
+      divEl[a].style.height = `${array[i]}px`;
       i++;
       l++;
+      a++;
     } else if ((await mainCondition) === false) {
       array[i] = rightArray[r];
-      divEl[i].style.height = `${array[i]}px`;
+      divEl[a].style.height = `${array[i]}px`;
       i++;
       r++;
+      a++;
     }
   }
   // MERGE LEFT ARRAY
@@ -88,9 +109,10 @@ async function merge(leftArray, rightArray, array, startIndex) {
     const leftCondition = await wait();
     if (await leftCondition) {
       array[i] = leftArray[l];
-      divEl[i].style.height = `${array[i]}px`;
+      divEl[a].style.height = `${array[i]}px`;
       i++;
       l++;
+      a++;
     }
   }
   // MERGE RIGHT ARRAY
@@ -98,9 +120,10 @@ async function merge(leftArray, rightArray, array, startIndex) {
     const rightCondition = await wait();
     if (await rightCondition) {
       array[i] = rightArray[r];
-      divEl[i].style.height = `${array[i]}px`;
+      divEl[a].style.height = `${array[i]}px`;
       i++;
       r++;
+      a++;
     }
   }
 }
