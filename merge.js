@@ -47,7 +47,13 @@ async function mergeSortMain(array, prevArray) {
   let length = array.length;
   // BASE CASE
   const base = await baseCondition(length);
-  if (await base) return 0;
+  if (await base) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(0);
+      }, speed);
+    });
+  }
 
   let middle = Math.ceil(length / 2);
   let leftArray = new Array(middle);
@@ -68,12 +74,14 @@ async function mergeSortMain(array, prevArray) {
   let addIndex = prevArray;
 
   const leftSort = await mergeSortMain(leftArray, 0);
-  const rightSort = await mergeSortMain(rightArray, leftArray.length - 1);
+
+  const rightSort = await mergeSortMain(rightArray, middle);
+
   const merged = await merge(leftArray, rightArray, array, addIndex);
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(prevArray);
+      resolve(0);
     }, speed);
   });
 }
@@ -145,5 +153,5 @@ export async function mergeSort() {
   for (let i = 0; i < divEl.length; i++) {
     divHeight[i] = divEl[i].offsetHeight;
   }
-  mergeSortMain(divHeight);
+  mergeSortMain(divHeight, 0);
 }
