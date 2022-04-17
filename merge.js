@@ -43,7 +43,7 @@ function wait() {
   });
 }
 
-async function mergeSortMain(array, prevArray) {
+async function mergeSortMain(array, prevArray, prevLeftArr) {
   let length = array.length;
   // BASE CASE
   const base = await baseCondition(length);
@@ -73,15 +73,20 @@ async function mergeSortMain(array, prevArray) {
 
   let addIndex = prevArray;
 
-  const leftSort = await mergeSortMain(leftArray, 0);
+  // need mahanap yung prev index
+  const leftSort = await mergeSortMain(leftArray, addIndex);
+  // tomoh na
+  const rightSort = await mergeSortMain(rightArray, middle, leftSort);
 
-  const rightSort = await mergeSortMain(rightArray, middle);
+  console.log("add index", addIndex);
+  console.log("prev arr", prevLeftArr);
+  console.log("");
 
   const merged = await merge(leftArray, rightArray, array, addIndex);
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(0);
+      resolve(length - 1);
     }, speed);
   });
 }
@@ -98,7 +103,7 @@ async function merge(leftArray, rightArray, array, addIndex) {
   let r = 0;
 
   let a = addIndex + i;
-  console.log(a);
+  //console.log(a);
 
   // SORT LEFT AND RIGHT ARRAYS INDIVIDUALLY
   while (l < leftSize && r < rightSize) {
@@ -106,12 +111,14 @@ async function merge(leftArray, rightArray, array, addIndex) {
     if (await mainCondition) {
       array[i] = leftArray[l];
       divEl[a].style.height = `${array[i]}px`;
+      divEl[a].style.backgroundColor = "red";
       i++;
       l++;
       a++;
     } else if ((await mainCondition) === false) {
       array[i] = rightArray[r];
       divEl[a].style.height = `${array[i]}px`;
+      divEl[a].style.backgroundColor = "pink";
       i++;
       r++;
       a++;
@@ -123,6 +130,7 @@ async function merge(leftArray, rightArray, array, addIndex) {
     if (await leftCondition) {
       array[i] = leftArray[l];
       divEl[a].style.height = `${array[i]}px`;
+      divEl[a].style.backgroundColor = "green";
       i++;
       l++;
       a++;
@@ -134,6 +142,7 @@ async function merge(leftArray, rightArray, array, addIndex) {
     if (await rightCondition) {
       array[i] = rightArray[r];
       divEl[a].style.height = `${array[i]}px`;
+      divEl[a].style.backgroundColor = "blue";
       i++;
       r++;
       a++;
