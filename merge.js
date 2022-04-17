@@ -72,21 +72,22 @@ async function mergeSortMain(array, prevArray, prevLeftArr) {
   }
 
   let addIndex = prevArray;
+  // need to get returned right sort
 
   // need mahanap yung prev index
   const leftSort = await mergeSortMain(leftArray, addIndex);
   // tomoh na
   const rightSort = await mergeSortMain(rightArray, middle, leftSort);
 
-  console.log("add index", addIndex);
-  console.log("prev arr", prevLeftArr);
+  console.log("leftsort", leftSort);
+  console.log("rightSort", rightSort);
   console.log("");
 
   const merged = await merge(leftArray, rightArray, array, addIndex);
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(length - 1);
+      resolve(addIndex);
     }, speed);
   });
 }
