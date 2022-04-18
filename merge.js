@@ -43,7 +43,7 @@ function wait() {
   });
 }
 
-async function mergeSortMain(array, prevArray, prevLeftArr) {
+async function mergeSortMain(array, prevArray) {
   let length = array.length;
   // BASE CASE
   const base = await baseCondition(length);
@@ -72,22 +72,24 @@ async function mergeSortMain(array, prevArray, prevLeftArr) {
   }
 
   let addIndex = prevArray;
-  // need to get returned right sort
+
+  // pass middle as param to set as starting array for next iteration
 
   // need mahanap yung prev index
   const leftSort = await mergeSortMain(leftArray, addIndex);
   // tomoh na
-  const rightSort = await mergeSortMain(rightArray, middle, leftSort);
+  const rightSort = await mergeSortMain(rightArray, leftSort);
 
-  console.log("leftsort", leftSort);
-  console.log("rightSort", rightSort);
-  console.log("");
+  // console.log("leftsort", leftSort);
+  // console.log("rightSort", rightSort);
+  // console.log("");
+  console.log(length);
 
   const merged = await merge(leftArray, rightArray, array, addIndex);
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(addIndex);
+      resolve(length);
     }, speed);
   });
 }
