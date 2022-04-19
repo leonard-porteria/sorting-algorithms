@@ -1,5 +1,5 @@
 const visualizerContainer = document.querySelector(".visualizer__container");
-let elements = 150; //25-250
+let elements = 150; //50-250
 let divHeight = [];
 
 // CREATE DIVS

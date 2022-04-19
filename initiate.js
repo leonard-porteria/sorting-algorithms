@@ -1,10 +1,15 @@
 import { bubbleSort } from "./bubble.js";
-import { quickSort } from "./quick.js";
+import { quickSortLomuto } from "./quickLomuto.js";
 import { mergeSort } from "./merge.js";
 import { selectionSort } from "./selection.js";
 import { insertionSort } from "./insertion.js";
+import { heapSort } from "./heap.js";
+import { quickHoareSort } from "./quickHoare.js";
+import { radixSort } from "./radix.js";
+import { cocktailShaker } from "./cocktail.js";
+import { bogoSort } from "./bogo.js";
 
-let sortChoice = 3;
+let sortChoice = 0;
 
 // BUBBLE SORT BUTTON
 const bubbleSortBtn = document.querySelector(".algorithms__bubble");
@@ -13,10 +18,10 @@ bubbleSortBtn.addEventListener("click", () => {
   sortChoice = 1;
 });
 
-// QUICK SORT BUTTON
-const quickSortBtn = document.querySelector(".algorithms__quick");
+// QUICK SORT [LOMUTO] BUTTON
+const quickLomutoSortBtn = document.querySelector(".algorithms__quickLomuto");
 
-quickSortBtn.addEventListener("click", () => {
+quickLomutoSortBtn.addEventListener("click", () => {
   sortChoice = 2;
 });
 
@@ -41,6 +46,41 @@ selectionSortBtn.addEventListener("click", () => {
   sortChoice = 5;
 });
 
+// HEAP SORT BUTTON
+const heapSortBtn = document.querySelector(".algorithms__heap");
+
+heapSortBtn.addEventListener("click", () => {
+  sortChoice = 6;
+});
+
+// QUICK SORT [HOARE] SORT BUTTON
+const quickHoareSortBtn = document.querySelector(".algorithms__quickHoare");
+
+quickHoareSortBtn.addEventListener("click", () => {
+  sortChoice = 7;
+});
+
+// RADIX SORT BUTTON
+const radixSortBtn = document.querySelector(".algorithms__radix");
+
+radixSortBtn.addEventListener("click", () => {
+  sortChoice = 8;
+});
+
+// COCKTAIL SHAKER BUTTON
+const cocktailShakerBtn = document.querySelector(".algorithms__cocktail");
+
+cocktailShakerBtn.addEventListener("click", () => {
+  sortChoice = 9;
+});
+
+// BOGO SORT BUTTON
+const bogoSortBtn = document.querySelector(".algorithms__bogo");
+
+bogoSortBtn.addEventListener("click", () => {
+  sortChoice = 10;
+});
+
 // START SORT BUTTON
 const start = document.querySelector(".generate__start");
 
@@ -48,12 +88,24 @@ start.addEventListener("click", () => {
   if (sortChoice === 1) {
     bubbleSort();
   } else if (sortChoice === 2) {
-    quickSort();
+    quickSortLomuto();
   } else if (sortChoice === 3) {
     mergeSort();
   } else if (sortChoice === 4) {
     insertionSort();
   } else if (sortChoice === 5) {
     selectionSort();
+  } else if (sortChoice === 6) {
+    heapSort();
+  } else if (sortChoice === 7) {
+    quickHoareSort();
+  } else if (sortChoice === 8) {
+    radixSort();
+  } else if (sortChoice === 9) {
+    cocktailShaker();
+  } else if (sortChoice === 10) {
+    bogoSort();
+  } else {
+    console.log("Choose a Sorting Algorithm");
   }
 });

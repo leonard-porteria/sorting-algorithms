@@ -27,7 +27,7 @@ h1 {
 
 .header {
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: 0.5fr 1fr 0.5fr;
   gap: 2rem;
   margin: 2rem 0;
   h1 {
@@ -38,15 +38,18 @@ h1 {
   }
 
   .algorithms {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1rem;
     .algorithm {
       cursor: pointer;
       justify-self: center;
       background-color: $accent;
       display: grid;
       border-radius: 10px;
-      width: 10%;
+      width: 12rem;
+      height: 4rem;
       h1 {
         justify-self: center;
         align-self: center;
@@ -56,8 +59,10 @@ h1 {
   }
 
   .generate {
+    align-self: center;
     display: flex;
     justify-content: space-around;
+    height: 4rem;
     .range {
       display: flex;
       width: 20vw;
@@ -74,7 +79,7 @@ h1 {
       background-color: $primary;
       display: grid;
       border-radius: 10px;
-      width: 10%;
+      width: 12rem;
       > h1 {
         justify-self: center;
         align-self: center;
