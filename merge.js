@@ -43,7 +43,7 @@ function wait() {
   });
 }
 
-async function mergeSortMain(array, prevArray) {
+async function mergeSortMain(array, start, end) {
   let length = array.length;
   // BASE CASE
   const base = await baseCondition(length);
@@ -71,42 +71,27 @@ async function mergeSortMain(array, prevArray) {
     }
   }
 
-  let addIndex = prevArray;
+  let mid = start + Math.ceil((end - start) / 2);
 
-  // pass middle as param to set as starting array for next iteration
+  const leftSort = await mergeSortMain(leftArray, start, mid);
+  const rightSort = await mergeSortMain(rightArray, mid, end);
 
-  // need mahanap yung prev index
-  const leftSort = await mergeSortMain(leftArray, addIndex);
-  // tomoh na
-  const rightSort = await mergeSortMain(rightArray, leftSort);
-
-  // console.log("leftsort", leftSort);
-  // console.log("rightSort", rightSort);
-  // console.log("");
-  console.log(length);
-
-  const merged = await merge(leftArray, rightArray, array, addIndex);
-
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(length);
-    }, speed);
-  });
+  const merged = await merge(leftArray, rightArray, array, start);
 }
 
-async function merge(leftArray, rightArray, array, addIndex) {
+async function merge(leftArray, rightArray, array, low) {
   // DIV VARIABLE
   const divEl = document.querySelectorAll(".visualizer__contianer__element");
   // VARIABLES
   let leftSize = Math.ceil(array.length / 2);
   let rightSize = array.length - leftSize;
 
+  // NEED TO ADD 1 IN LEFT ARR
+
   let i = 0;
   let l = 0;
   let r = 0;
-
-  let a = addIndex + i;
-  //console.log(a);
+  let a = low + i;
 
   // SORT LEFT AND RIGHT ARRAYS INDIVIDUALLY
   while (l < leftSize && r < rightSize) {
@@ -151,7 +136,6 @@ async function merge(leftArray, rightArray, array, addIndex) {
       a++;
     }
   }
-
   return true;
 }
 
@@ -165,5 +149,5 @@ export async function mergeSort() {
   for (let i = 0; i < divEl.length; i++) {
     divHeight[i] = divEl[i].offsetHeight;
   }
-  mergeSortMain(divHeight, 0);
+  mergeSortMain(divHeight, 0, divHeight.length);
 }
