@@ -1,5 +1,14 @@
 import { speed } from "./app.js";
 
+// PAINT
+function checkPaint() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, speed);
+  });
+}
+
 // CHECK MAIN CONDITION
 function checkCondition(j, i) {
   if (j < i) {
@@ -76,22 +85,28 @@ async function mergeSortMain(array, start, end) {
   const leftSort = await mergeSortMain(leftArray, start, mid);
   const rightSort = await mergeSortMain(rightArray, mid, end);
 
-  const merged = await merge(leftArray, rightArray, array, start);
+  const merged = await merge(leftArray, rightArray, array, start, end);
 }
 
-async function merge(leftArray, rightArray, array, low) {
+async function merge(leftArray, rightArray, array, low, high) {
   // DIV VARIABLE
   const divEl = document.querySelectorAll(".visualizer__contianer__element");
   // VARIABLES
   let leftSize = Math.ceil(array.length / 2);
   let rightSize = array.length - leftSize;
 
-  // NEED TO ADD 1 IN LEFT ARR
-
   let i = 0;
   let l = 0;
   let r = 0;
   let a = low + i;
+
+  // PAINT PARTITION
+  for (let b = a; b < high; b++) {
+    const delay = await wait();
+    if (await delay) {
+      divEl[b].style.backgroundColor = "blue";
+    }
+  }
 
   // SORT LEFT AND RIGHT ARRAYS INDIVIDUALLY
   while (l < leftSize && r < rightSize) {
@@ -99,14 +114,14 @@ async function merge(leftArray, rightArray, array, low) {
     if (await mainCondition) {
       array[i] = leftArray[l];
       divEl[a].style.height = `${array[i]}px`;
-      divEl[a].style.backgroundColor = "red";
+      divEl[a].style.backgroundColor = "green";
       i++;
       l++;
       a++;
     } else if ((await mainCondition) === false) {
       array[i] = rightArray[r];
       divEl[a].style.height = `${array[i]}px`;
-      divEl[a].style.backgroundColor = "pink";
+      divEl[a].style.backgroundColor = "green";
       i++;
       r++;
       a++;
@@ -130,7 +145,7 @@ async function merge(leftArray, rightArray, array, low) {
     if (await rightCondition) {
       array[i] = rightArray[r];
       divEl[a].style.height = `${array[i]}px`;
-      divEl[a].style.backgroundColor = "blue";
+      divEl[a].style.backgroundColor = "green";
       i++;
       r++;
       a++;
@@ -149,5 +164,14 @@ export async function mergeSort() {
   for (let i = 0; i < divEl.length; i++) {
     divHeight[i] = divEl[i].offsetHeight;
   }
-  mergeSortMain(divHeight, 0, divHeight.length);
+  const sorted = await mergeSortMain(divHeight, 0, divHeight.length);
+
+  if (!sorted) {
+    for (let i = 0; i < divHeight.length; i++) {
+      const paint = await checkPaint();
+      if (await paint) {
+        divEl[i].style.backgroundColor = "pink";
+      }
+    }
+  }
 }

@@ -28,16 +28,16 @@ h1 {
 .header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 0.5fr 1fr 0.5fr;
-      grid-template-rows: 0.5fr 1fr 0.5fr;
+  -ms-grid-rows: 0.25fr 1fr 0.25fr;
+      grid-template-rows: 0.25fr 1fr 0.25fr;
   gap: 2rem;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 .header h1 {
   -ms-grid-column-align: center;
       justify-self: center;
-  font-size: 3rem;
+  font-size: 2rem;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 }

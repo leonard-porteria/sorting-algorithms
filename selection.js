@@ -10,7 +10,7 @@ function checkPaint() {
 
 // CHECK CONDITION
 async function checkCondition(i, j) {
-  if (i >= j) {
+  if (i > j) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(true);

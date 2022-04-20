@@ -45,6 +45,7 @@ const generateVisualizer = () => {
   for (let i = 0; i < visualizerDivEl.length; i++) {
     visualizerDivEl[i].style.backgroundColor = "#8ec7f5";
     visualizerDivEl[i].style.margin = "0 1px";
+    visualizerDivEl[i].style.transition = "all 50ms ease-in";
   }
 };
 generateVisualizer();
