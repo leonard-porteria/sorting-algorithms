@@ -1,13 +1,13 @@
-import { bubbleSort } from "./bubble.js";
-import { quickSortLomuto } from "./quickLomuto.js";
-import { mergeSort } from "./merge.js";
-import { selectionSort } from "./selection.js";
-import { insertionSort } from "./insertion.js";
-import { heapSort } from "./heap.js";
-import { quickHoareSort } from "./quickHoare.js";
-import { radixSort } from "./radix.js";
-import { cocktailShaker } from "./cocktail.js";
-import { bogoSort } from "./bogo.js";
+import { bubbleSort } from "./algorithms/bubble.js";
+import { quickSortLomuto } from "./algorithms/quickLomuto.js";
+import { mergeSort } from "./algorithms/merge.js";
+import { selectionSort } from "./algorithms/selection.js";
+import { insertionSort } from "./algorithms/insertion.js";
+import { heapSort } from "./algorithms/heap.js";
+import { quickHoareSort } from "./algorithms/quickHoare.js";
+import { radixSort } from "./algorithms/radix.js";
+import { cocktailShaker } from "./algorithms/cocktail.js";
+import { bogoSort } from "./algorithms/bogo.js";
 
 let sortChoice = 0;
 

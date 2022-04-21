@@ -1,4 +1,4 @@
-import { speed } from "./app.js";
+import { speed } from "../app.js";
 
 // PAINT
 function checkPaint() {
