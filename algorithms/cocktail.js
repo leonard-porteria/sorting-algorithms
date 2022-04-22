@@ -10,4 +10,5 @@ export async function cocktailShaker() {
   for (let i = 0; i < divEl.length; i++) {
     divHeight[i] = divEl[i].offsetHeight;
   }
+  console.log(divHeight);
 }
