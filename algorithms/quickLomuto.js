@@ -10,7 +10,7 @@ function checkPaint() {
 }
 
 // CONDITION
-function chechCondition(j, i) {
+function checkCondition(j, i) {
   if (j < i) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -38,7 +38,7 @@ async function partition(array, start, end) {
   }
 
   for (let j = start; j <= end; j++) {
-    const condition = await chechCondition(array[j], pivot);
+    const condition = await checkCondition(array[j], pivot);
     divEl[start].style.backgroundColor = "red";
     divEl[end].style.backgroundColor = "blue";
     if (await condition) {
