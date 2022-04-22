@@ -18,8 +18,13 @@ export async function cocktailShaker() {
     for (let i = 0; i < divHeight.length - 1; i++) {
       if (divHeight[i] > divHeight[i + 1]) {
         let temp = divHeight[i];
+
         divHeight[i] = divHeight[i + 1];
+        divEl[i].style.height = `${divHeight[i]}px`;
+
         divHeight[i + 1] = temp;
+        divEl[i + 1].style.height = `${divHeight[i + 1]}px`;
+
         is_Sorted = true;
       }
     }
@@ -30,8 +35,13 @@ export async function cocktailShaker() {
     for (let j = divHeight.length - 1; j > 0; j--) {
       if (divHeight[j - 1] > divHeight[j]) {
         let temp = divHeight[j];
+
         divHeight[j] = divHeight[j - 1];
+        divEl[j].style.height = `${divHeight[j]}px`;
+
         divHeight[j - 1] = temp;
+        divEl[j - 1].style.height = `${divHeight[j - 1]}px`;
+
         is_Sorted = true;
       }
     }
