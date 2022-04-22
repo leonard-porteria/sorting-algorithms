@@ -1,5 +1,22 @@
 import { speed } from "../app.js";
 
+// CONDITION
+function checkCondition(i, j) {
+  if (i > j) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true);
+      }, speed);
+    });
+  } else {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(false);
+      }, speed);
+    });
+  }
+}
+
 export async function cocktailShaker() {
   console.log("Cocktail Shaker Function");
   // VARIABLES
@@ -10,42 +27,39 @@ export async function cocktailShaker() {
   for (let i = 0; i < divEl.length; i++) {
     divHeight[i] = divEl[i].offsetHeight;
   }
-  console.log(divHeight);
 
+  // COCKTAIL SHAKER ALGORITHM
   let is_Sorted = true;
-
-  while (is_Sorted) {
-    for (let i = 0; i < divHeight.length - 1; i++) {
-      if (divHeight[i] > divHeight[i + 1]) {
+  for (let a = 0; a < divHeight.length; a++) {
+    for (let i = a; i < divHeight.length - 1; i++) {
+      const bigCondition = await checkCondition(divHeight[i], divHeight[i + 1]);
+      if (await bigCondition) {
         let temp = divHeight[i];
-
         divHeight[i] = divHeight[i + 1];
-        divEl[i].style.height = `${divHeight[i]}px`;
-
         divHeight[i + 1] = temp;
-        divEl[i + 1].style.height = `${divHeight[i + 1]}px`;
-
         is_Sorted = true;
+        // UPDATE DIV
+        divEl[i].style.height = `${divHeight[i]}px`;
+        divEl[i + 1].style.height = `${divHeight[i + 1]}px`;
       }
     }
 
     if (!is_Sorted) break;
     is_Sorted = false;
 
-    for (let j = divHeight.length - 1; j > 0; j--) {
-      if (divHeight[j - 1] > divHeight[j]) {
+    for (let j = divHeight.length - a - 1; j > a; j--) {
+      const lowCondition = await checkCondition(divHeight[j - 1], divHeight[j]);
+      if (await lowCondition) {
         let temp = divHeight[j];
-
         divHeight[j] = divHeight[j - 1];
-        divEl[j].style.height = `${divHeight[j]}px`;
-
         divHeight[j - 1] = temp;
-        divEl[j - 1].style.height = `${divHeight[j - 1]}px`;
-
         is_Sorted = true;
+        // UPDATE DIV
+        divEl[j].style.height = `${divHeight[j]}px`;
+        divEl[j - 1].style.height = `${divHeight[j - 1]}px`;
       }
     }
   }
 
-  console.log(divHeight);
+  //while (is_Sorted) {}
 }
