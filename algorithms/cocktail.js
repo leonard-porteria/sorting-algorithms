@@ -60,6 +60,5 @@ export async function cocktailShaker() {
       }
     }
   }
-
-  //while (is_Sorted) {}
+  console.log("sync end");
 }
