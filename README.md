@@ -23,7 +23,7 @@ git merge branch_name
 // merge the branch to the current branch
 git -d branch_name
 // delete a branch local
-git push origin --d branch_name
+git push origin --delete branch_name
 // delete github branch remotely
 
 ## other to add

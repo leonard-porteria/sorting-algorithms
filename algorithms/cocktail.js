@@ -1,4 +1,12 @@
 import { speed } from "../app.js";
+// PAINT
+function checkPaint() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, speed);
+  });
+}
 
 // CONDITION
 function checkCondition(i, j) {
@@ -29,9 +37,10 @@ export async function cocktailShaker() {
   }
 
   // COCKTAIL SHAKER ALGORITHM
+  let length = divHeight.length - 1;
   let is_Sorted = true;
   for (let a = 0; a < divHeight.length; a++) {
-    for (let i = a; i < divHeight.length - 1; i++) {
+    for (let i = a; i < divHeight.length - a - 1; i++) {
       const bigCondition = await checkCondition(divHeight[i], divHeight[i + 1]);
       if (await bigCondition) {
         let temp = divHeight[i];
@@ -41,8 +50,16 @@ export async function cocktailShaker() {
         // UPDATE DIV
         divEl[i].style.height = `${divHeight[i]}px`;
         divEl[i + 1].style.height = `${divHeight[i + 1]}px`;
+        // STYLE DIV
+        divEl[i].style.backgroundColor = "#8ec7f5";
+        divEl[i + 1].style.backgroundColor = "yellow";
+      } else if ((await bigCondition) === false) {
+        // STYLE DIV
+        divEl[i].style.backgroundColor = "#8ec7f5";
+        divEl[i + 1].style.backgroundColor = "red";
       }
     }
+    divEl[length - a].style.backgroundColor = "green";
 
     if (!is_Sorted) break;
     is_Sorted = false;
@@ -57,8 +74,24 @@ export async function cocktailShaker() {
         // UPDATE DIV
         divEl[j].style.height = `${divHeight[j]}px`;
         divEl[j - 1].style.height = `${divHeight[j - 1]}px`;
+        // STYLE DIV
+        divEl[j].style.backgroundColor = "#8ec7f5";
+        divEl[j - 1].style.backgroundColor = "yellow";
+      } else if ((await lowCondition) === false) {
+        // STYLE DIV
+        divEl[j].style.backgroundColor = "#8ec7f5";
+        divEl[j - 1].style.backgroundColor = "red";
+        divEl[length - a].style.backgroundColor = "green";
       }
     }
+    divEl[a].style.backgroundColor = "blue";
   }
-  console.log("sync end");
+
+  // PAINT
+  for (let i = 0; i < divHeight.length; i++) {
+    const paint = await checkPaint();
+    if (await paint) {
+      divEl[i].style.backgroundColor = "pink";
+    }
+  }
 }

@@ -1,4 +1,13 @@
 import { speed } from "../app.js";
+// PAINT
+function checkPaint() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, speed);
+  });
+}
+
 // CONDITION
 function checkCondition(i, j) {
   if (i >= j) {
@@ -14,14 +23,6 @@ function checkCondition(i, j) {
       }, speed);
     });
   }
-}
-// PAINT
-function checkPaint() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(true);
-    }, speed);
-  });
 }
 
 export async function bubbleSort() {
