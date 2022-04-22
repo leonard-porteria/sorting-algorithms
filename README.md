@@ -13,7 +13,7 @@ git branch
 // check for banches
 git branch -c name
 // creates a branch
-git branch -b name
+git checkout -b name
 // creates a branch and go to the branch
 git checkout branch_name
 // go to branch
