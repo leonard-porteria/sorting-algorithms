@@ -1,44 +1,73 @@
 import { speed } from "../app.js";
 
 // PAINT
+function checkPaint() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, speed);
+  });
+}
 
-// CONDITION
+// DELAY
+function wait() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, speed);
+  });
+}
 
 // SWAP
-function swap(arr, i, j) {
-  const tmp = arr[i];
-  arr[i] = arr[j];
-  arr[j] = tmp;
+function swap(array, i, j) {
+  const divEl = document.querySelectorAll(".visualizer__contianer__element");
+
+  const temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+
+  divEl[i].style.height = `${array[i]}px`;
+  divEl[j].style.height = `${array[j]}px`;
 }
 
 //PARTITION
-function partition(arr, lo, hi) {
+async function partition(arr, lo, hi) {
+  const divEl = document.querySelectorAll(".visualizer__contianer__element");
   const pivot = arr[Math.floor((lo + hi) / 2)];
   let i = lo - 1;
   let j = hi + 1;
+
+  divEl[Math.floor((lo + hi) / 2)].style.backgroundColor = "red";
+
   while (true) {
     do {
       i++;
+      divEl[i].style.backgroundColor = "blue";
     } while (arr[i] < pivot);
 
     do {
       j--;
+      divEl[j].style.backgroundColor = "green";
     } while (arr[j] > pivot);
 
     if (i >= j) {
+      for (let i = 0; i < arr.length; i++) {
+        divEl[i].style.backgroundColor = "#8ec7f5";
+      }
       return j;
     }
 
+    await wait();
     swap(arr, i, j);
   }
 }
 
 // MAIN FUNCTION
-function quickSort(arr, lo, hi) {
+async function quickSort(arr, lo, hi) {
   if (lo >= 0 && hi >= 0 && lo < hi) {
-    const p = partition(arr, lo, hi);
-    quickSort(arr, lo, p);
-    quickSort(arr, p + 1, hi);
+    const p = await partition(arr, lo, hi);
+    await quickSort(arr, lo, p);
+    await quickSort(arr, p + 1, hi);
   }
 }
 
@@ -53,7 +82,12 @@ export async function quickHoareSort() {
     divHeight[i] = divEl[i].offsetHeight;
   }
 
-  console.log(divHeight);
-  quickSort(divHeight, 0, divHeight.length - 1);
-  console.log(divHeight);
+  await quickSort(divHeight, 0, divHeight.length - 1);
+
+  for (let i = 0; i < divHeight.length; i++) {
+    const paint = await checkPaint();
+    if (await paint) {
+      divEl[i].style.backgroundColor = "pink";
+    }
+  }
 }
