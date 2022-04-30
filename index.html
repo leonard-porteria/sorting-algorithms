@@ -17,53 +17,57 @@
     <header class="header">
       <h1>Sorting Algorithms</h1>
 
-      <section class="algorithms">
-        <div class="algorithms__bubble algorithm">
-          <h1>Bubble Sort</h1>
-        </div>
-        <div class="algorithms__quickLomuto algorithm">
-          <h1>Quick Sort [Lomuto]</h1>
-        </div>
-        <div class="algorithms__merge algorithm">
-          <h1>Merge Sort</h1>
-        </div>
-        <div class="algorithms__insertion algorithm">
-          <h1>Insertion Sort</h1>
-        </div>
-        <div class="algorithms__selection algorithm">
-          <h1>Selection Sort</h1>
-        </div>
-        <div class="algorithms__heap algorithm">
-          <h1>Heap Sort</h1>
-        </div>
-        <div class="algorithms__quickHoare algorithm">
-          <h1>Quicksort [Hoare]</h1>
-        </div>
-        <div class="algorithms__radix algorithm">
-          <h1>Radix Sort</h1>
-        </div>
-        <div class="algorithms__cocktail algorithm">
-          <h1>Cocktail Shaker</h1>
-        </div>
-        <div class="algorithms__bogo algorithm">
-          <h1>Bogo Sort</h1>
-        </div>
-      </section>
-
       <div class="generate">
+        <div class="generate__algos">
+          <div class="generate__algos__container">
+            <h1>Algorithm</h1>
+            <span class="caret down"></span>
+          </div>
+
+          <div class="dropdown">
+            <div class="algorithms__bubble algorithm">
+              <h1>Bubble Sort</h1>
+            </div>
+            <div class="algorithms__merge algorithm">
+              <h1>Merge Sort</h1>
+            </div>
+            <div class="algorithms__insertion algorithm">
+              <h1>Insertion Sort</h1>
+            </div>
+            <div class="algorithms__selection algorithm">
+              <h1>Selection Sort</h1>
+            </div>
+            <div class="algorithms__quickLomuto algorithm">
+              <h1>Quick Sort [Lomuto]</h1>
+            </div>
+            <div class="algorithms__quickHoare algorithm">
+              <h1>Quick Sort [Hoare]</h1>
+            </div>
+            <div class="algorithms__heap algorithm">
+              <h1>Heap Sort</h1>
+            </div>
+            <div class="algorithms__cocktail algorithm">
+              <h1>Cocktail Shaker</h1>
+            </div>
+          </div>
+        </div>
+
         <div class="generate__length range">
           <p>Length:</p>
           <input class="slider__length" type="range" min="50" max="250" />
           <p class="array__length">150</p>
         </div>
+
         <div class="generate__speed range">
           <p>Speed:</p>
           <input class="slider__speed" type="range" min="1" max="10" />
           <p class="array__speed">6</p>
         </div>
+
         <div class="generate__container">
-          <h1>Generate new array</h1>
+          <h1>Generate new Array</h1>
         </div>
+
         <div class="generate__start">
           <h1>Start Sorting!</h1>
         </div>
@@ -76,5 +80,6 @@
 
     <script type="module" src="app.js"></script>
     <script type="module" src="initiate.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>

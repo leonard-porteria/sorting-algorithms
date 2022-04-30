@@ -1,0 +1,16 @@
+@import "variables";
+@import "globals";
+@import "header";
+
+.visualizer {
+  display: grid;
+  &__container {
+    justify-self: center;
+    width: 90vw;
+    height: 600px;
+    box-sizing: border-box;
+    border: 5px solid $light;
+    display: flex;
+    align-items: end;
+  }
+}
