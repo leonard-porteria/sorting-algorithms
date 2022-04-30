@@ -31,5 +31,4 @@ git push origin --delete branch_name
 combine all algo into dropdown
 disable generate new arr and size slider while running
 change the generate new arr to terminate
-change bogosort into shell sort
 create config.js to edit all values in one file

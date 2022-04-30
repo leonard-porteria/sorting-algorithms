@@ -5,9 +5,7 @@ import { selectionSort } from "./algorithms/selection.js";
 import { insertionSort } from "./algorithms/insertion.js";
 import { heapSort } from "./algorithms/heap.js";
 import { quickHoareSort } from "./algorithms/quickHoare.js";
-import { radixSort } from "./algorithms/radix.js";
 import { cocktailShaker } from "./algorithms/cocktail.js";
-import { bogoSort } from "./algorithms/bogo.js";
 
 let sortChoice = 0;
 
@@ -60,25 +58,11 @@ quickHoareSortBtn.addEventListener("click", () => {
   sortChoice = 7;
 });
 
-// RADIX SORT BUTTON
-const radixSortBtn = document.querySelector(".algorithms__radix");
-
-radixSortBtn.addEventListener("click", () => {
-  sortChoice = 8;
-});
-
 // COCKTAIL SHAKER BUTTON
 const cocktailShakerBtn = document.querySelector(".algorithms__cocktail");
 
 cocktailShakerBtn.addEventListener("click", () => {
-  sortChoice = 9;
-});
-
-// BOGO SORT BUTTON
-const bogoSortBtn = document.querySelector(".algorithms__bogo");
-
-bogoSortBtn.addEventListener("click", () => {
-  sortChoice = 10;
+  sortChoice = 8;
 });
 
 // START SORT BUTTON
@@ -100,11 +84,7 @@ start.addEventListener("click", () => {
   } else if (sortChoice === 7) {
     quickHoareSort();
   } else if (sortChoice === 8) {
-    radixSort();
-  } else if (sortChoice === 9) {
     cocktailShaker();
-  } else if (sortChoice === 10) {
-    bogoSort();
   } else {
     console.log("Choose a Sorting Algorithm");
   }
