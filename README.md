@@ -26,10 +26,10 @@ git -d branch_name
 git push origin --delete branch_name
 // delete github branch remotely
 
-## other to add
+## TODO
 
-heap sort
-cocktail shaker
-quick sort (other version)
-radix sort
-bogosort ;)
+combine all algo into dropdown
+disable generate new arr and size slider while running
+change the generate new arr to terminate
+change bogosort into shell sort
+create config.js to edit all values in one file
