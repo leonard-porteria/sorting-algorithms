@@ -1,5 +1,5 @@
 import { speed } from "../app.js";
-
+import { terminate } from "../initiate.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -43,11 +43,13 @@ async function partition(arr, lo, hi) {
     do {
       i++;
       divEl[i].style.backgroundColor = "blue";
+      await wait();
     } while (arr[i] < pivot);
 
     do {
       j--;
       divEl[j].style.backgroundColor = "green";
+      await wait();
     } while (arr[j] > pivot);
 
     if (i >= j) {
@@ -64,6 +66,9 @@ async function partition(arr, lo, hi) {
 
 // MAIN FUNCTION
 async function quickSort(arr, lo, hi) {
+  // TERMINATE
+  if (terminate === true) return false;
+
   if (lo >= 0 && hi >= 0 && lo < hi) {
     const p = await partition(arr, lo, hi);
     await quickSort(arr, lo, p);
@@ -82,12 +87,14 @@ export async function quickHoareSort() {
     divHeight[i] = divEl[i].offsetHeight;
   }
 
-  await quickSort(divHeight, 0, divHeight.length - 1);
+  const sorted = await quickSort(divHeight, 0, divHeight.length - 1);
 
-  for (let i = 0; i < divHeight.length; i++) {
-    const paint = await checkPaint();
-    if (await paint) {
-      divEl[i].style.backgroundColor = "pink";
+  if (sorted === true) {
+    for (let i = 0; i < divHeight.length; i++) {
+      const paint = await checkPaint();
+      if (await paint) {
+        divEl[i].style.backgroundColor = "pink";
+      }
     }
   }
 }

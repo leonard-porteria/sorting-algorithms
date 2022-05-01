@@ -1,4 +1,5 @@
 import { speed } from "../app.js";
+import { terminate } from "../initiate.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -52,6 +53,8 @@ export async function selectionSort() {
         divEl[j].style.backgroundColor = "red";
       } else if (condition === false) {
       }
+      // TERMINATE
+      if (terminate === true) return false;
     }
 
     // PAINT PARTITION

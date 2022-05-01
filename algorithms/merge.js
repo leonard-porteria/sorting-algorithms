@@ -1,4 +1,5 @@
 import { speed } from "../app.js";
+import { terminate } from "../initiate.js";
 
 // PAINT
 function checkPaint() {
@@ -84,7 +85,8 @@ async function mergeSortMain(array, start, end) {
 
   const leftSort = await mergeSortMain(leftArray, start, mid);
   const rightSort = await mergeSortMain(rightArray, mid, end);
-
+  // TERMINATE
+  if (terminate === true) return false;
   const merged = await merge(leftArray, rightArray, array, start, end);
 }
 

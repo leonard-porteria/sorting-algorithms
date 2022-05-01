@@ -1,5 +1,5 @@
 import { speed } from "../app.js";
-
+import { terminate } from "../initiate.js";
 // PAINT
 
 // CONDITION
@@ -14,6 +14,9 @@ function wait() {
 }
 
 async function swap(array, firstItemIndex, lastItemIndex) {
+  // TERMINATE
+  if (terminate === true) return false;
+
   const divEl = document.querySelectorAll(".visualizer__contianer__element");
 
   const temp = array[firstItemIndex];

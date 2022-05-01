@@ -1,5 +1,5 @@
 import { speed } from "../app.js";
-
+import { terminate } from "../initiate.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -59,6 +59,8 @@ async function partition(array, start, end) {
         ? (divEl[j].style.backgroundColor = "yellow")
         : (divEl[j + 1].style.backgroundColor = "yellow");
     }
+    // TERMINATE
+    if (terminate === true) return false;
   }
   i++;
   let temp = array[i];

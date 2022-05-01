@@ -7,7 +7,7 @@ import { heapSort } from "./algorithms/heap.js";
 import { quickHoareSort } from "./algorithms/quickHoare.js";
 import { cocktailShaker } from "./algorithms/cocktail.js";
 
-let sortChoice = 0;
+export let sortChoice = 0;
 
 // BUBBLE SORT BUTTON
 const bubbleSortBtn = document.querySelector(".algorithms__bubble");
@@ -67,8 +67,20 @@ cocktailShakerBtn.addEventListener("click", () => {
 
 // START SORT BUTTON
 const start = document.querySelector(".generate__start");
+export let terminate = false;
 
 start.addEventListener("click", () => {
+  if (sortChoice === 0) return;
+  // UPDATE START BUTTON
+  if (start.classList.contains("start")) {
+    console.log("Started");
+    terminate = false;
+  } else if (start.classList.contains("terminate")) {
+    console.log("Terminated");
+    terminate = true;
+    return;
+  }
+
   if (sortChoice === 1) {
     bubbleSort();
   } else if (sortChoice === 2) {
@@ -85,7 +97,5 @@ start.addEventListener("click", () => {
     quickHoareSort();
   } else if (sortChoice === 8) {
     cocktailShaker();
-  } else {
-    console.log("Choose a Sorting Algorithm");
   }
 });

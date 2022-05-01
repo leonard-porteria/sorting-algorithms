@@ -1,4 +1,5 @@
 import { speed } from "../app.js";
+import { terminate } from "../initiate.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -58,6 +59,8 @@ export async function cocktailShaker() {
         divEl[i].style.backgroundColor = "#8ec7f5";
         divEl[i + 1].style.backgroundColor = "red";
       }
+      // TERMINATE
+      if (terminate === true) return false;
     }
     divEl[length - a].style.backgroundColor = "green";
 
@@ -83,6 +86,8 @@ export async function cocktailShaker() {
         divEl[j - 1].style.backgroundColor = "red";
         divEl[length - a].style.backgroundColor = "green";
       }
+      // TERMINATE
+      if (terminate === true) return false;
     }
     divEl[a].style.backgroundColor = "blue";
   }

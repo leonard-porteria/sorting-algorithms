@@ -95,6 +95,8 @@ h1 {
   display: grid;
   border-radius: 10px;
   width: 100%;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .header .generate__start > h1 {

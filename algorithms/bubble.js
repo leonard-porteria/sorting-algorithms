@@ -1,4 +1,5 @@
 import { speed } from "../app.js";
+import { terminate } from "../initiate.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -58,6 +59,8 @@ export async function bubbleSort() {
           divEl[j].style.backgroundColor = "#8ec7f5";
         }
       }
+      // TERMINATE
+      if (terminate === true) return false;
     }
   }
   for (let i = 0; i < divHeight.length; i++) {
