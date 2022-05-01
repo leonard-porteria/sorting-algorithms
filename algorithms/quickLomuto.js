@@ -1,5 +1,6 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
+import { closeTerminate } from "../index.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -112,10 +113,12 @@ export async function quickSortLomuto() {
 
   const sorted = await quickSortMain(divHeight, 0, divHeight.length - 1);
 
+  // PAINT
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
       divEl[i].style.backgroundColor = "pink";
     }
   }
+  closeTerminate();
 }

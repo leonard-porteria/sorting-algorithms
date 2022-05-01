@@ -32,14 +32,22 @@ const startText = document.querySelector(".generate__start h1");
 start.addEventListener("click", () => {
   if (sortChoice === 0) return false;
   if (start.classList.contains("start")) {
-    start.classList.add("terminate");
-    start.classList.remove("start");
-    startText.textContent = "Terminate!";
-    start.style.backgroundColor = "rgb(185, 29, 29)";
+    openTerminate();
   } else {
-    start.classList.add("start");
-    start.classList.remove("terminate");
-    startText.textContent = "Start Sorting!";
-    start.style.backgroundColor = "rgb(27, 158, 33)";
+    closeTerminate();
   }
 });
+
+function openTerminate() {
+  start.classList.add("terminate");
+  start.classList.remove("start");
+  startText.textContent = "Terminate!";
+  start.style.backgroundColor = "rgb(185, 29, 29)";
+}
+
+export function closeTerminate() {
+  start.classList.add("start");
+  start.classList.remove("terminate");
+  startText.textContent = "Start Sorting!";
+  start.style.backgroundColor = "rgb(27, 158, 33)";
+}

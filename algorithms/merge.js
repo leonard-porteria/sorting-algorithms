@@ -1,6 +1,6 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
-
+import { closeTerminate } from "../index.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -83,7 +83,11 @@ async function mergeSortMain(array, start, end) {
 
   let mid = start + Math.ceil((end - start) / 2);
 
+  // TERMINATE
+  if (terminate === true) return false;
   const leftSort = await mergeSortMain(leftArray, start, mid);
+  // TERMINATE
+  if (terminate === true) return false;
   const rightSort = await mergeSortMain(rightArray, mid, end);
   // TERMINATE
   if (terminate === true) return false;
@@ -91,6 +95,8 @@ async function mergeSortMain(array, start, end) {
 }
 
 async function merge(leftArray, rightArray, array, low, high) {
+  // TERMINATE
+  if (terminate === true) return false;
   // DIV VARIABLE
   const divEl = document.querySelectorAll(".visualizer__contianer__element");
   // VARIABLES
@@ -128,6 +134,8 @@ async function merge(leftArray, rightArray, array, low, high) {
       r++;
       a++;
     }
+    // TERMINATE
+    if (terminate === true) break;
   }
   // MERGE LEFT ARRAY
   while (l < leftSize) {
@@ -140,6 +148,8 @@ async function merge(leftArray, rightArray, array, low, high) {
       l++;
       a++;
     }
+    // TERMINATE
+    if (terminate === true) break;
   }
   // MERGE RIGHT ARRAY
   while (r < rightSize) {
@@ -152,6 +162,8 @@ async function merge(leftArray, rightArray, array, low, high) {
       r++;
       a++;
     }
+    // TERMINATE
+    if (terminate === true) break;
   }
   return true;
 }
@@ -166,7 +178,11 @@ export async function mergeSort() {
   for (let i = 0; i < divEl.length; i++) {
     divHeight[i] = divEl[i].offsetHeight;
   }
+
   const sorted = await mergeSortMain(divHeight, 0, divHeight.length);
+
+  // TERMINATE
+  if (terminate === true) return false;
 
   if (!sorted) {
     for (let i = 0; i < divHeight.length; i++) {
@@ -176,4 +192,5 @@ export async function mergeSort() {
       }
     }
   }
+  closeTerminate();
 }

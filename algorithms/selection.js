@@ -1,5 +1,6 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
+import { closeTerminate } from "../index.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -75,11 +76,12 @@ export async function selectionSort() {
     index = 0;
   }
 
-  // PAINT SORTED
+  // PAINT
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
       divEl[i].style.backgroundColor = "pink";
     }
   }
+  closeTerminate();
 }

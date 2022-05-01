@@ -1,5 +1,6 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
+import { closeTerminate } from "../index.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -82,4 +83,5 @@ export async function insertionSort() {
       divEl[i].style.backgroundColor = "pink";
     }
   }
+  closeTerminate();
 }

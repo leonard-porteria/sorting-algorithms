@@ -1,6 +1,14 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
+import { closeTerminate } from "../index.js";
 // PAINT
+function checkPaint() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, speed);
+  });
+}
 
 // CONDITION
 
@@ -110,4 +118,13 @@ export async function heapSort() {
   }
 
   const sorted = await heapSortMain(divHeight);
+
+  // PAINT
+  for (let i = 0; i < divHeight.length; i++) {
+    const paint = await checkPaint();
+    if (await paint) {
+      divEl[i].style.backgroundColor = "pink";
+    }
+  }
+  closeTerminate();
 }
