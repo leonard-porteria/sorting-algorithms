@@ -1,5 +1,5 @@
-import { sortChoice } from "initiate.js";
-import { uiColors } from "config.js";
+import { sortChoice } from "./initiate.js";
+import { uiColors } from "./config.js";
 
 // ALGORITHM DROPDOWN
 const dropdown = document.querySelector(".generate__algos");
