@@ -1,6 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
 import { closeTerminate } from "../index.js";
+import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -112,7 +113,7 @@ async function merge(leftArray, rightArray, array, low, high) {
   for (let b = a; b < high; b++) {
     const delay = await wait();
     if (await delay) {
-      divEl[b].style.backgroundColor = "blue";
+      divEl[b].style.backgroundColor = algoColors.endPoints;
     }
   }
 
@@ -122,14 +123,14 @@ async function merge(leftArray, rightArray, array, low, high) {
     if (await mainCondition) {
       array[i] = leftArray[l];
       divEl[a].style.height = `${array[i]}px`;
-      divEl[a].style.backgroundColor = "green";
+      divEl[a].style.backgroundColor = algoColors.valid;
       i++;
       l++;
       a++;
     } else if ((await mainCondition) === false) {
       array[i] = rightArray[r];
       divEl[a].style.height = `${array[i]}px`;
-      divEl[a].style.backgroundColor = "green";
+      divEl[a].style.backgroundColor = algoColors.valid;
       i++;
       r++;
       a++;
@@ -143,7 +144,7 @@ async function merge(leftArray, rightArray, array, low, high) {
     if (await leftCondition) {
       array[i] = leftArray[l];
       divEl[a].style.height = `${array[i]}px`;
-      divEl[a].style.backgroundColor = "green";
+      divEl[a].style.backgroundColor = algoColors.valid;
       i++;
       l++;
       a++;
@@ -157,7 +158,7 @@ async function merge(leftArray, rightArray, array, low, high) {
     if (await rightCondition) {
       array[i] = rightArray[r];
       divEl[a].style.height = `${array[i]}px`;
-      divEl[a].style.backgroundColor = "green";
+      divEl[a].style.backgroundColor = algoColors.valid;
       i++;
       r++;
       a++;
@@ -188,7 +189,7 @@ export async function mergeSort() {
     for (let i = 0; i < divHeight.length; i++) {
       const paint = await checkPaint();
       if (await paint) {
-        divEl[i].style.backgroundColor = "pink";
+        divEl[i].style.backgroundColor = algoColors.finish;
       }
     }
   }

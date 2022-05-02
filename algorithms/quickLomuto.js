@@ -117,7 +117,7 @@ export async function quickSortLomuto() {
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
-      divEl[i].style.backgroundColor = "pink";
+      divEl[i].style.backgroundColor = "#1b9e21";
     }
   }
   closeTerminate();

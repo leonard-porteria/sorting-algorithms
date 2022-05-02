@@ -1,3 +1,5 @@
+import { baseColors } from "../config.js";
+
 const visualizerContainer = document.querySelector(".visualizer__container");
 let elements = 150; //50-250
 let divHeight = [];
@@ -43,9 +45,9 @@ const generateVisualizer = () => {
   }
   // SET STYLE IN DIVS
   for (let i = 0; i < visualizerDivEl.length; i++) {
-    visualizerDivEl[i].style.backgroundColor = "#8ec7f5";
+    visualizerDivEl[i].style.backgroundColor = baseColors.bar;
     visualizerDivEl[i].style.margin = "0 1px";
-    // visualizerDivEl[i].style.transition = "all 25ms ease-in";
+    // visualizerDivEl[i].style.transition = "all 50ms ease-in";
   }
 };
 generateVisualizer();

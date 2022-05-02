@@ -34,7 +34,7 @@ h1 {
     }
     &__container {
       cursor: pointer;
-      background-color: $primary;
+      background-color: $blue;
       display: grid;
       border-radius: 10px;
       width: 100%;
@@ -63,7 +63,7 @@ h1 {
 .generate__algos {
   display: grid;
   position: relative;
-  background-color: $primary;
+  background-color: $blue;
   border-radius: 10px;
   cursor: pointer;
   &__container {
@@ -100,7 +100,7 @@ h1 {
     width: 100%;
     padding: 1rem 0;
     z-index: -1;
-    background-color: $primary;
+    background-color: $blue;
     border-radius: 10px;
     display: grid;
     grid-template-rows: repeat(8, 1fr);

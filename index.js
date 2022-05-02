@@ -1,4 +1,5 @@
 import { sortChoice } from "../initiate.js";
+import { uiColors } from "../config.js";
 
 // ALGORITHM DROPDOWN
 const dropdown = document.querySelector(".generate__algos");
@@ -42,12 +43,12 @@ function openTerminate() {
   start.classList.add("terminate");
   start.classList.remove("start");
   startText.textContent = "Terminate!";
-  start.style.backgroundColor = "rgb(185, 29, 29)";
+  start.style.backgroundColor = uiColors.red;
 }
 
 export function closeTerminate() {
   start.classList.add("start");
   start.classList.remove("terminate");
   startText.textContent = "Start Sorting!";
-  start.style.backgroundColor = "rgb(27, 158, 33)";
+  start.style.backgroundColor = uiColors.green;
 }

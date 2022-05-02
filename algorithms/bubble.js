@@ -1,6 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
 import { closeTerminate } from "../index.js";
+import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -49,15 +50,15 @@ export async function bubbleSort() {
         divEl[j].style.height = `${divHeight[j]}px`;
         divEl[j + 1].style.height = `${divHeight[j + 1]}px`;
         // STYLE
-        divEl[j + 1].style.backgroundColor = "green";
-        divEl[j].style.backgroundColor = "#8ec7f5";
+        divEl[j + 1].style.backgroundColor = algoColors.valid;
+        divEl[j].style.backgroundColor = algoColors.area;
       } else if ((await condition) === false) {
         if (divHeight[j + 1] <= divHeight[j + 2]) {
-          divEl[j + 1].style.backgroundColor = "green";
-          divEl[j].style.backgroundColor = "#8ec7f5";
+          divEl[j + 1].style.backgroundColor = algoColors.valid;
+          divEl[j].style.backgroundColor = algoColors.area;
         } else {
-          divEl[j + 1].style.backgroundColor = "red";
-          divEl[j].style.backgroundColor = "#8ec7f5";
+          divEl[j + 1].style.backgroundColor = algoColors.err;
+          divEl[j].style.backgroundColor = algoColors.area;
         }
       }
       // TERMINATE
@@ -67,7 +68,7 @@ export async function bubbleSort() {
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
-      divEl[i].style.backgroundColor = "pink";
+      divEl[i].style.backgroundColor = algoColors.finish;
     }
   }
   closeTerminate();

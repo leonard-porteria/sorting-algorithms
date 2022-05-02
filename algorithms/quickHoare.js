@@ -38,8 +38,6 @@ async function partition(arr, lo, hi) {
   let i = lo - 1;
   let j = hi + 1;
 
-  divEl[Math.floor((lo + hi) / 2)].style.backgroundColor = "red";
-
   while (true) {
     do {
       i++;
@@ -90,13 +88,12 @@ export async function quickHoareSort() {
 
   const sorted = await quickSort(divHeight, 0, divHeight.length - 1);
 
-  if (sorted === true) {
-    for (let i = 0; i < divHeight.length; i++) {
-      const paint = await checkPaint();
-      if (await paint) {
-        divEl[i].style.backgroundColor = "pink";
-      }
+  for (let i = 0; i < divHeight.length; i++) {
+    const paint = await checkPaint();
+    if (await paint) {
+      divEl[i].style.backgroundColor = "pink";
     }
   }
+
   closeTerminate();
 }
