@@ -1,4 +1,4 @@
-import { baseColors } from "../config.js";
+import { baseColors } from "./config.js";
 
 const visualizerContainer = document.querySelector(".visualizer__container");
 let elements = 150; //50-250
