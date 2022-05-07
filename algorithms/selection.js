@@ -1,6 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
 import { closeTerminate } from "../index.js";
+import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -38,21 +39,17 @@ export async function selectionSort() {
     divHeight[i] = divEl[i].offsetHeight;
   }
 
-  let smallest = 0;
-  let index = 0;
-
   for (let i = 0; i < divHeight.length; i++) {
-    smallest = divHeight[i];
+    let smallest = divHeight[i];
+    let index = i;
     for (let j = i; j < divHeight.length; j++) {
       const condition = await checkCondition(smallest, divHeight[j]);
-      divEl[j].style.backgroundColor = "green";
-      // SAVE SMALLEST VALUE
+      divEl[j].style.backgroundColor = algoColors.endPoints;
       if (await condition) {
-        divEl[index].style.backgroundColor = "green";
+        divEl[index].style.backgroundColor = algoColors.endPoints;
+        divEl[j].style.backgroundColor = algoColors.err;
         smallest = divHeight[j];
         index = j;
-        divEl[j].style.backgroundColor = "red";
-      } else if (condition === false) {
       }
       // TERMINATE
       if (terminate === true) return false;
@@ -60,7 +57,7 @@ export async function selectionSort() {
 
     // PAINT PARTITION
     for (let k = i + 1; k < divHeight.length; k++) {
-      divEl[k].style.backgroundColor = "#8ec7f5";
+      divEl[k].style.backgroundColor = algoColors.area;
     }
 
     // SWAP Kth VALUE WITH SMALLEST VALUE
@@ -70,17 +67,14 @@ export async function selectionSort() {
     // UPDATE DIV HEIGHT
     divEl[i].style.height = `${divHeight[i]}px`;
     divEl[index].style.height = `${divHeight[index]}px`;
-
     // RESET VALUES
-    smallest = 0;
-    index = 0;
   }
 
   // PAINT
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
-      divEl[i].style.backgroundColor = "pink";
+      divEl[i].style.backgroundColor = algoColors.finish;
     }
   }
   closeTerminate();

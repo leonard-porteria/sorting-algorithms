@@ -1,6 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
 import { closeTerminate } from "../index.js";
+import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -53,17 +54,17 @@ export async function cocktailShaker() {
         divEl[i].style.height = `${divHeight[i]}px`;
         divEl[i + 1].style.height = `${divHeight[i + 1]}px`;
         // STYLE DIV
-        divEl[i].style.backgroundColor = "#8ec7f5";
-        divEl[i + 1].style.backgroundColor = "yellow";
+        divEl[i].style.backgroundColor = algoColors.area;
+        divEl[i + 1].style.backgroundColor = algoColors.pivot;
       } else if ((await bigCondition) === false) {
         // STYLE DIV
-        divEl[i].style.backgroundColor = "#8ec7f5";
-        divEl[i + 1].style.backgroundColor = "red";
+        divEl[i].style.backgroundColor = algoColors.area;
+        divEl[i + 1].style.backgroundColor = algoColors.err;
       }
       // TERMINATE
       if (terminate === true) return false;
     }
-    divEl[length - a].style.backgroundColor = "green";
+    divEl[length - a].style.backgroundColor = algoColors.valid;
 
     if (!is_Sorted) break;
     is_Sorted = false;
@@ -79,25 +80,25 @@ export async function cocktailShaker() {
         divEl[j].style.height = `${divHeight[j]}px`;
         divEl[j - 1].style.height = `${divHeight[j - 1]}px`;
         // STYLE DIV
-        divEl[j].style.backgroundColor = "#8ec7f5";
-        divEl[j - 1].style.backgroundColor = "yellow";
+        divEl[j].style.backgroundColor = algoColors.area;
+        divEl[j - 1].style.backgroundColor = algoColors.pivot;
       } else if ((await lowCondition) === false) {
         // STYLE DIV
-        divEl[j].style.backgroundColor = "#8ec7f5";
-        divEl[j - 1].style.backgroundColor = "red";
-        divEl[length - a].style.backgroundColor = "green";
+        divEl[j].style.backgroundColor = algoColors.area;
+        divEl[j - 1].style.backgroundColor = algoColors.err;
+        divEl[length - a].style.backgroundColor = algoColors.valid;
       }
       // TERMINATE
       if (terminate === true) return false;
     }
-    divEl[a].style.backgroundColor = "blue";
+    divEl[a].style.backgroundColor = algoColors.endPoints;
   }
 
   // PAINT
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
-      divEl[i].style.backgroundColor = "pink";
+      divEl[i].style.backgroundColor = algoColors.finish;
     }
   }
   closeTerminate();

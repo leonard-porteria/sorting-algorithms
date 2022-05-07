@@ -1,6 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
 import { closeTerminate } from "../index.js";
+import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -41,19 +42,19 @@ async function partition(arr, lo, hi) {
   while (true) {
     do {
       i++;
-      divEl[i].style.backgroundColor = "blue";
+      divEl[i].style.backgroundColor = algoColors.leftPart;
       await wait();
     } while (arr[i] < pivot);
 
     do {
       j--;
-      divEl[j].style.backgroundColor = "green";
+      divEl[j].style.backgroundColor = algoColors.valid;
       await wait();
     } while (arr[j] > pivot);
 
     if (i >= j) {
       for (let i = 0; i < arr.length; i++) {
-        divEl[i].style.backgroundColor = "#8ec7f5";
+        divEl[i].style.backgroundColor = algoColors.area;
       }
       return j;
     }
@@ -91,7 +92,7 @@ export async function quickHoareSort() {
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
-      divEl[i].style.backgroundColor = "pink";
+      divEl[i].style.backgroundColor = algoColors.finish;
     }
   }
 

@@ -1,6 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
 import { closeTerminate } from "../index.js";
+import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -35,6 +36,10 @@ async function swap(array, firstItemIndex, lastItemIndex) {
   divEl[firstItemIndex].style.height = `${array[firstItemIndex]}px`;
   divEl[lastItemIndex].style.height = `${array[lastItemIndex]}px`;
 
+  // STYLE DIV
+  divEl[firstItemIndex].style.backgroundColor = algoColors.endPoints;
+  divEl[lastItemIndex].style.backgroundColor = algoColors.leftPart;
+
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(true);
@@ -48,9 +53,10 @@ async function heapify(heap, i, max) {
   let leftChild;
   let rightChild;
 
+  const divEl = document.querySelectorAll(".visualizer__contianer__element");
+
   while (i < max) {
     await wait();
-
     index = i;
     leftChild = 2 * i + 1;
     rightChild = leftChild + 1;
@@ -94,8 +100,12 @@ async function heapSortMain(arr) {
   let lastElement = arr.length - 1;
 
   while (lastElement > 0) {
+    const divEl = document.querySelectorAll(".visualizer__contianer__element");
+
     await swap(arr, 0, lastElement);
     await heapify(arr, 0, lastElement);
+
+    divEl[lastElement].style.backgroundColor = algoColors.valid;
     lastElement -= 1;
   }
 
@@ -123,7 +133,7 @@ export async function heapSort() {
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
-      divEl[i].style.backgroundColor = "pink";
+      divEl[i].style.backgroundColor = algoColors.finish;
     }
   }
   closeTerminate();

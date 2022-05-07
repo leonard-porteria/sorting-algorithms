@@ -1,6 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
 import { closeTerminate } from "../index.js";
+import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -35,13 +36,12 @@ async function partition(array, start, end) {
 
   // PAINT PARTITION
   for (let k = start + 1; k < end; k++) {
-    divEl[k].style.backgroundColor = "#8ec7f5";
+    divEl[k].style.backgroundColor = algoColors.area;
   }
 
   for (let j = start; j <= end; j++) {
     const condition = await checkCondition(array[j], pivot);
-    divEl[start].style.backgroundColor = "red";
-    divEl[end].style.backgroundColor = "blue";
+    divEl[end].style.backgroundColor = algoColors.endPoints;
     if (await condition) {
       i++;
       let temp = array[i];
@@ -51,14 +51,14 @@ async function partition(array, start, end) {
       divEl[i].style.height = `${array[i]}px`;
       divEl[j].style.height = `${array[j]}px`;
       //STYLE DIV
-      divEl[j].style.backgroundColor = "green";
-      divEl[j + 1].style.backgroundColor = "yellow";
-      divEl[i].style.backgroundColor = "pink";
+      divEl[j].style.backgroundColor = algoColors.valid;
+      divEl[j + 1].style.backgroundColor = algoColors.pivot;
+      divEl[i].style.backgroundColor = algoColors.leftPart;
     } else if ((await condition) === false) {
-      divEl[j].style.backgroundColor = "green";
+      divEl[j].style.backgroundColor = algoColors.valid;
       j === end
-        ? (divEl[j].style.backgroundColor = "yellow")
-        : (divEl[j + 1].style.backgroundColor = "yellow");
+        ? (divEl[j].style.backgroundColor = algoColors.pivot)
+        : (divEl[j + 1].style.backgroundColor = algoColors.pivot);
     }
     // TERMINATE
     if (terminate === true) return false;
@@ -72,9 +72,9 @@ async function partition(array, start, end) {
   divEl[i].style.height = `${array[i]}px`;
   divEl[end].style.height = `${array[end]}px`;
   // STYLE DIV
-  divEl[i].style.backgroundColor = "green";
-  divEl[start].style.backgroundColor = "green";
-  divEl[end].style.backgroundColor = "green";
+  divEl[i].style.backgroundColor = algoColors.valid;
+  divEl[start].style.backgroundColor = algoColors.valid;
+  divEl[end].style.backgroundColor = algoColors.valid;
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -117,7 +117,7 @@ export async function quickSortLomuto() {
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
-      divEl[i].style.backgroundColor = "#1b9e21";
+      divEl[i].style.backgroundColor = algoColors.finish;
     }
   }
   closeTerminate();

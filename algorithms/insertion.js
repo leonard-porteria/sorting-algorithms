@@ -1,6 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
 import { closeTerminate } from "../index.js";
+import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -57,8 +58,8 @@ export async function insertionSort() {
           divEl[k].style.backgroundColor = "#8ec7f5";
         }
         // STYLE DIV
-        divEl[i].style.backgroundColor = "red";
-        divEl[j].style.backgroundColor = "green";
+        divEl[i].style.backgroundColor = algoColors.pivot;
+        divEl[j].style.backgroundColor = algoColors.valid;
       }
       j--;
       // TERMINATE
@@ -67,7 +68,7 @@ export async function insertionSort() {
     divHeight[j + 1] = temp;
     if (j >= 0) {
       divEl[j + 1].style.height = `${divHeight[j + 1]}px`;
-      divEl[i].style.backgroundColor = "red";
+      divEl[i].style.backgroundColor = algoColors.pivot;
     }
   }
 
@@ -80,7 +81,7 @@ export async function insertionSort() {
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
     if (await paint) {
-      divEl[i].style.backgroundColor = "pink";
+      divEl[i].style.backgroundColor = algoColors.finish;
     }
   }
   closeTerminate();
