@@ -1,7 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
-import { closeTerminate } from "../index.js";
-import { baseColors, uiColors, algoColors } from "../config.js";
+import { closeTerminate, enableSlider } from "../index.js";
+import { algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -85,4 +85,5 @@ export async function insertionSort() {
     }
   }
   closeTerminate();
+  enableSlider();
 }

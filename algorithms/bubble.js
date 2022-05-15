@@ -1,6 +1,6 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
-import { closeTerminate } from "../index.js";
+import { closeTerminate, enableSlider } from "../index.js";
 import { baseColors, uiColors, algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
@@ -72,4 +72,5 @@ export async function bubbleSort() {
     }
   }
   closeTerminate();
+  enableSlider();
 }

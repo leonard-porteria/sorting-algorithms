@@ -22,12 +22,27 @@ h1 {
     margin: 0 5rem;
     height: 4rem;
     .range {
-      display: flex;
-      width: 100%;
+      display: grid;
+      grid-template-columns: 0.25fr 1fr 0.25fr;
       input {
+        align-self: center;
+        -webkit-appearance: none;
+        background-color: $blue;
         width: 100%;
+        height: 12px;
+        border-radius: 10em;
+      }
+      input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: $bar;
+        cursor: pointer;
       }
       p {
+        align-self: center;
+        justify-self: center;
         font-family: "Poppins", sans-serif;
         font-weight: 400;
       }

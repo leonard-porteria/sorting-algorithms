@@ -1,5 +1,5 @@
 import { sortChoice } from "./initiate.js";
-import { uiColors } from "./config.js";
+import { uiColors, baseColors } from "./config.js";
 
 // ALGORITHM DROPDOWN
 const dropdown = document.querySelector(".generate__algos");
@@ -29,6 +29,7 @@ dropdown.addEventListener("click", () => {
 // TERMINATE BUTTON
 const start = document.querySelector(".generate__start");
 const startText = document.querySelector(".generate__start h1");
+const divEls = document.querySelectorAll(".visualizer__contianer__element");
 // enable terminate button
 start.addEventListener("click", () => {
   if (sortChoice === 0) return false;
@@ -51,4 +52,25 @@ export function closeTerminate() {
   start.classList.remove("terminate");
   startText.textContent = "Start Sorting!";
   start.style.backgroundColor = uiColors.green;
+  divEls.forEach((divEl) => {
+    divEl.style.backgroundColor = baseColors.bar;
+  });
+}
+
+// DISABLE BUTTON AND SLIDERS
+const lengthGrid = document.querySelector(".generate__length");
+const lengthSlider = document.querySelector(".generate__length input");
+
+export function disableSlider() {
+  lengthGrid.style.color = baseColors.dim;
+  lengthGrid.style.cursor = "not-allowed";
+  lengthSlider.style.pointerEvents = "none";
+  lengthSlider.style.backgroundColor = uiColors.dimBlue;
+}
+
+export function enableSlider() {
+  lengthGrid.style.color = baseColors.light;
+  lengthGrid.style.cursor = "default";
+  lengthSlider.style.pointerEvents = "all";
+  lengthSlider.style.backgroundColor = uiColors.blue;
 }

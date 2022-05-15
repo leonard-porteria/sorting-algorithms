@@ -1,7 +1,7 @@
 import { speed } from "../app.js";
 import { terminate } from "../initiate.js";
-import { closeTerminate } from "../index.js";
-import { baseColors, uiColors, algoColors } from "../config.js";
+import { closeTerminate, enableSlider } from "../index.js";
+import { algoColors } from "../config.js";
 // PAINT
 function checkPaint() {
   return new Promise((resolve, reject) => {
@@ -89,8 +89,8 @@ async function quickSortMain(array, start, end) {
 
   let pivot = await partition(array, start, end);
   // lomuto partition scheme [end partition]
-  const firstSort = await quickSortMain(array, start, (await pivot) - 1);
-  const secondSort = await quickSortMain(array, (await pivot) + 1, end);
+  await quickSortMain(array, start, (await pivot) - 1);
+  await quickSortMain(array, (await pivot) + 1, end);
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -121,4 +121,5 @@ export async function quickSortLomuto() {
     }
   }
   closeTerminate();
+  enableSlider();
 }
