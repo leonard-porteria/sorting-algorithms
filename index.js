@@ -29,7 +29,7 @@ dropdown.addEventListener("click", () => {
 // TERMINATE BUTTON
 const start = document.querySelector(".generate__start");
 const startText = document.querySelector(".generate__start h1");
-const divEls = document.querySelectorAll(".visualizer__contianer__element");
+
 // enable terminate button
 start.addEventListener("click", () => {
   if (sortChoice === 0) return false;
@@ -52,9 +52,6 @@ export function closeTerminate() {
   start.classList.remove("terminate");
   startText.textContent = "Start Sorting!";
   start.style.backgroundColor = uiColors.green;
-  divEls.forEach((divEl) => {
-    divEl.style.backgroundColor = baseColors.bar;
-  });
 }
 
 // DISABLE BUTTON AND SLIDERS
