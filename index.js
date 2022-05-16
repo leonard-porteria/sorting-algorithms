@@ -26,6 +26,17 @@ dropdown.addEventListener("click", () => {
   }
 });
 
+const dropdownText = document.querySelector(".generate__algos__container h1");
+const algorithmsChoices = document.querySelectorAll(".algorithm");
+let algoChoice = 0;
+
+for (let i = 0; i < algorithmsChoices.length; i++) {
+  algorithmsChoices[i].addEventListener("click", () => {
+    algoChoice = i;
+    dropdownText.textContent = algorithmsChoices[i].textContent.trim();
+  });
+}
+
 // TERMINATE BUTTON
 const start = document.querySelector(".generate__start");
 const startText = document.querySelector(".generate__start h1");

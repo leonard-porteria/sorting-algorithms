@@ -5,8 +5,8 @@ h1 {
 
 .header {
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-rows: 0.5fr 1fr;
+  gap: 1rem;
   margin: 1rem 0;
   h1 {
     justify-self: center;
@@ -37,6 +37,7 @@ h1 {
         width: 20px;
         height: 20px;
         border-radius: 50%;
+        border: 1px solid $blue;
         background: $bar;
         cursor: pointer;
       }

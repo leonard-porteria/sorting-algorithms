@@ -25,6 +25,10 @@ const deleteDivs = () => {
   }
 };
 
+// GET OFFSET HEIGHT
+const visContainer = document.querySelector(".visualizer__container");
+const visContainerHeight = visContainer.offsetHeight;
+
 // GENERATE VISUALIZER STYLES
 const generateVisualizer = () => {
   // GET DIV ELEMENTS
@@ -33,7 +37,7 @@ const generateVisualizer = () => {
   );
   // GENERATE HEIGHT
   for (let i = 0; i < visualizerDivEl.length; i++) {
-    divHeight[i] = Math.floor(Math.random() * 590) + 1;
+    divHeight[i] = Math.floor(Math.random() * visContainerHeight) + 1;
   }
   // ASSIGN HEIGHT
   for (let i = 0; i < visualizerDivEl.length; i++) {

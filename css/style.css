@@ -18,6 +18,12 @@ body {
   font-size: 1rem;
   color: #e0e8eb;
   background-color: #1a2125;
+  height: 100vh;
+  width: 100vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 0.25fr 1fr;
+      grid-template-rows: 0.25fr 1fr;
 }
 
 h1 {
@@ -28,9 +34,9 @@ h1 {
 .header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (1fr)[2];
-      grid-template-rows: repeat(2, 1fr);
-  gap: 2rem;
+  -ms-grid-rows: 0.5fr 1fr;
+      grid-template-rows: 0.5fr 1fr;
+  gap: 1rem;
   margin: 1rem 0;
 }
 
@@ -77,6 +83,7 @@ h1 {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  border: 1px solid #2d99e0;
   background: #8ec7f5;
   cursor: pointer;
 }
@@ -206,14 +213,17 @@ h1 {
 }
 
 .visualizer {
+  -ms-grid-row-align: center;
+      align-self: center;
   display: -ms-grid;
   display: grid;
+  height: 90%;
 }
 
 .visualizer__container {
   justify-self: center;
   width: 90vw;
-  height: 600px;
+  height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border: 5px solid #e0e8eb;

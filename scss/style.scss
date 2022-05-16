@@ -3,11 +3,13 @@
 @import "header";
 
 .visualizer {
+  align-self: center;
   display: grid;
+  height: 90%;
   &__container {
     justify-self: center;
     width: 90vw;
-    height: 600px;
+    height: 100%;
     box-sizing: border-box;
     border: 5px solid $light;
     display: flex;
