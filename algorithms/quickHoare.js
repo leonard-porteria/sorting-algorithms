@@ -22,6 +22,9 @@ function wait() {
 
 // SWAP
 function swap(array, i, j) {
+  // TERMINATE
+  if (terminate === true) return false;
+
   const divEl = document.querySelectorAll(".visualizer__contianer__element");
 
   const temp = array[i];
@@ -41,12 +44,16 @@ async function partition(arr, lo, hi) {
 
   while (true) {
     do {
+      // TERMINATE
+      if (terminate === true) return false;
       i++;
       divEl[i].style.backgroundColor = algoColors.leftPart;
       await wait();
     } while (arr[i] < pivot);
 
     do {
+      // TERMINATE
+      if (terminate === true) return false;
       j--;
       divEl[j].style.backgroundColor = algoColors.valid;
       await wait();
@@ -88,6 +95,9 @@ export async function quickHoareSort() {
   }
 
   const sorted = await quickSort(divHeight, 0, divHeight.length - 1);
+
+  // TERMINATE
+  if (terminate === true) return false;
 
   for (let i = 0; i < divHeight.length; i++) {
     const paint = await checkPaint();
